@@ -1,4 +1,4 @@
-**Spreadsheet Functionality**
+**Spreadsheet Functionality (NOTE: The user can also access a Help popup containing information about how to perform actions in the spreadsheet by clicking the Help button)**
 * It provides a spreadsheet interface that is accessible via a web browser
     * The default spreadsheet has 10 rows of cells, which are denoted via a number (row 1, 2, 3, etc), as well as 10 columns of cells, which are denoted via a letter (A, B, C, etc)
 * Single cells, as well as groups of cells, can be selected. This is visually indicated by a blue highlight over the cell(s). 
@@ -32,14 +32,14 @@
     * A non-formula cell can contain any number of types within it. For instance, if B1 contains 5 and B2 contains 10, “REF(B1) REF(B2) hello SUM(B1..B2)” evaluates to “5 10 hello 15”. 
 * Once a user clicks out of a cell they are typing in, it will display the resulting value of their text, using the types of data described above. All cells show their resulting “display” value at all times, unless they are clicked on to edit them, in which case they show their “true” value (for instance, the literal text “REF(A1)”). 
 * A cell that is not a formula cell is allowed to contain as many references, concatenations, and/or range expressions as the user wishes (for instance, “REF(A1) REF(B1) SUM(A4..A7)” is a legal cell content). 
-* ADDITIONAL FEATURE 1: Find and Replace 
+* FEATURER: Find and Replace 
     * The user can perform a “find and replace” by opening the find and replace side menu, opened via the Data dropdown menu 
     * While this menu is open, the user cannot edit cells manually. 
     * In this menu, they can enter text to find and new text to replace that text with. 
     * The text being searched is the “true” value of cells, not the “display” value. 
     * The user can use buttons in this side menu to either immediately replace all values matching the “find” text with the “replace” text, or iterate through all instances of the “find” text one at a time, choosing individually whether to replace them or not one at a time. 
     * When a particular instance of the “find” text is the current one the user is choosing to replace or not, the “true” value of the cell containing it will be shown instead of the “display” value and that cell will be highlighted with the usual “selected” blue highlight. 
-* ADDI**T**IONAL FEATURE 2: Data Validation
+* FEATURE: Data Validation
     * The user is able to specify data validation rules that determine what data is “allowed” in a cell or cells 
     * If a rule for a cell is violated, it will display an error message instead of what would otherwise be the display value 
     * The user can add and remove validation rules from the cell(s) they have currently selected using the data validation side menu, opened via the Data dropdown menu 
@@ -48,9 +48,7 @@
         * Number is equal to/greater than/less than [value of user’s choice]
         * Number or word is one of [value(s) of user’s choice] 
     * Data validation rules apply to the display values of cells, not the “true” values. For instance, in a cell that has a “numbers only” rule, “REF(B1)” is allowed as long as B1 contains a number. 
-* ADDITIONAL FEATURE 3: Cell Text Styles
+* FEATURE: Cell Text Styles
     * The user can change the style of text in the cell(s) they are currently selecting using the buttons in the top right corner.
     * The user can select to bold/unbold, italicize/unitalicize, underline/un-underline, and color the text in cell(s) using these buttons.
     * Style is set on a cell-by-cell basis regardless of the text it contains 
-* The user can access a Help popup containing information about how to perform actions in the spreadsheet by clicking the Help button.
-* The three additional features are pictured below:

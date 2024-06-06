@@ -1,54 +1,84 @@
-**Spreadsheet Functionality (NOTE: The user can also access a Help popup containing information about how to perform actions in the spreadsheet by clicking the Help button)**
-* It provides a spreadsheet interface that is accessible via a web browser
-    * The default spreadsheet has 10 rows of cells, which are denoted via a number (row 1, 2, 3, etc), as well as 10 columns of cells, which are denoted via a letter (A, B, C, etc)
-* Single cells, as well as groups of cells, can be selected. This is visually indicated by a blue highlight over the cell(s). 
-* The user can insert more rows and columns using the Edit dropdown menu.
-* The user can delete rows and columns using the Edit dropdown menu.
-    * If the user attempts to perform a delete that would delete the last row or column, they will be prevented from doing so.
-* The user can clear selected cell(s) or all cells using the Edit dropdown menu 
-* The user can click a cell to enter it. They can then type text into that cell. The following types of data can be entered into the cell:
-    * A string or numerical constant (for instance, “hello” or “5”). 
-    * A cell reference which refers to the value contained in another cell in the sheet (for instance, “REF(A1)”). This will display the display value of the cell being referred to.
-        * Note that references are absolute. This means that if rows or columns are added that change what literal cell the reference refers to (for instance, there is now a different cell called A1), the reference will now refer to that different cell. 
-        * References cannot refer to themselves (or form a loop with other references back to themselves). If they do, an error will be displayed.
-        * A malformed reference (such as missing a close parenthesis) will display an error. 
-    * A summation range expression (for instance, “SUM(A1..B5)”). This will display the sum of the values in the specified range. 
-        * Note that the range is absolute. This means that if rows or columns are added that change what literal cells are in the range (for instance, there is now a new column B and thus new cells B1 through B5), the reference will now refer to those different cells.  
-        * Ranges cannot include their own cell in the range. If they do, an error will be displayed.
-        * Ranges must have the second value be further to the right and below (or the same location) as the first value. If they are not,  an error will be displayed.
-        * A malformed summation range expression (such as missing a close parenthesis) will display an error. 
-    * An average range expression (for instance, “AVERAGE(A1..B5)”). This will display the average of the values in the specified range. 
-        * Note that the range is absolute. This means that if rows or columns are added that change what literal cells are in the range (for instance, there is now a new column B and thus new cells B1 through B5), the reference will now refer to those different cells.  
-        * Ranges cannot include their own cell in the range. If they do, an error will be displayed
-        * Ranges must have the second value be further to the right and below (or the same location) as the first value. If they are not,  an error will be displayed.
-        * A malformed average range expression (such as missing a close parenthesis) will display an error. 
-    * A concatenation of strings using “+” (for instance, "zip+zap" will evaluate to "zipzap" and  "zip + zap" will be evaluated to zip  zap. Note that the quotation marks are just meant for string denotation here in documentation and are not needed in the cell). 
-        * A concatenation will be performed for any instance of “+” that is not located between two numbers.
-    * An arithmetic formula, made up of the +, -, *, /, and/or ^ operators, numbers, and/or parenthesis. 
-        * Formulas will be evaluated using the proper algebraic order of operations
-        * A formula containing illegal characters, such as letters, will display an error. 
-        * If any formula characters other than a + (namely, -, *, /, and/or ^) are detected, the cell will be considered a formula cell and will be evaluated as such. These characters are “reserved characters”, so putting them in a cell for other reasons will result in an error (for instance, a cell containing “good/bye” would result in displaying an error).
-        * A formula cell is allowed to contain as many range expressions and cell references as the user wishes. As long as these expressions and references evaluate to numbers, the formula will work properly (for instance, “REF(A1) * REF(B1)” is legal cell content.
-    * A non-formula cell can contain any number of types within it. For instance, if B1 contains 5 and B2 contains 10, “REF(B1) REF(B2) hello SUM(B1..B2)” evaluates to “5 10 hello 15”. 
-* Once a user clicks out of a cell they are typing in, it will display the resulting value of their text, using the types of data described above. All cells show their resulting “display” value at all times, unless they are clicked on to edit them, in which case they show their “true” value (for instance, the literal text “REF(A1)”). 
-* A cell that is not a formula cell is allowed to contain as many references, concatenations, and/or range expressions as the user wishes (for instance, “REF(A1) REF(B1) SUM(A4..A7)” is a legal cell content). 
-* FEATURER: Find and Replace 
-    * The user can perform a “find and replace” by opening the find and replace side menu, opened via the Data dropdown menu 
-    * While this menu is open, the user cannot edit cells manually. 
-    * In this menu, they can enter text to find and new text to replace that text with. 
-    * The text being searched is the “true” value of cells, not the “display” value. 
-    * The user can use buttons in this side menu to either immediately replace all values matching the “find” text with the “replace” text, or iterate through all instances of the “find” text one at a time, choosing individually whether to replace them or not one at a time. 
-    * When a particular instance of the “find” text is the current one the user is choosing to replace or not, the “true” value of the cell containing it will be shown instead of the “display” value and that cell will be highlighted with the usual “selected” blue highlight. 
-* FEATURE: Data Validation
-    * The user is able to specify data validation rules that determine what data is “allowed” in a cell or cells 
-    * If a rule for a cell is violated, it will display an error message instead of what would otherwise be the display value 
-    * The user can add and remove validation rules from the cell(s) they have currently selected using the data validation side menu, opened via the Data dropdown menu 
-    * The available rules to apply are:
-        * Allowed to be a word, or required to be a number 
-        * Number is equal to/greater than/less than [value of user’s choice]
-        * Number or word is one of [value(s) of user’s choice] 
-    * Data validation rules apply to the display values of cells, not the “true” values. For instance, in a cell that has a “numbers only” rule, “REF(B1)” is allowed as long as B1 contains a number. 
-* FEATURE: Cell Text Styles
-    * The user can change the style of text in the cell(s) they are currently selecting using the buttons in the top right corner.
-    * The user can select to bold/unbold, italicize/unitalicize, underline/un-underline, and color the text in cell(s) using these buttons.
-    * Style is set on a cell-by-cell basis regardless of the text it contains 
+HOW TO INSTALL THE SPREADSHEET: 
+- Navigate to the "spreadsheet" folder (where this README is located)
+- Run "npm install" in the terminal
+- Run "npm start" in the terminal
+- Navigate to http://localhost:3000 in a web browser  
+
+
+HOW TO RUN THE SPREADSHEET TESTS:
+- Navigate to the "spreadsheet" folder (where this README is located)
+- Run "npm install" in the terminal
+- Run "npm test models/tests -- --coverage" in the terminal (runs all tests except end to end tests)
+- Run "npm run e2e" in the terminal (exclusively runs the end to end tests) 
+
+
+HOW TO USE THE SPREADSHEET: 
+- Cells Info: 
+    - Cells are denoted via a column and row in the form "A1". 
+    - Click on any cell to type in it. You will now see the "true" value of that cell. 
+        - Then, click anywhere else on the page to exit editing that cell. You will see the "display" value of that cell again (whatever that may be, after applying references, formulas, error checking, etc.).
+        - You may type any text into cells.
+    - Cell references are in the form "REF(A1)".
+    - Range expressions are in the form "SUM(A1..B5)" and "AVERAGE(A1..B5)".
+    - Formulas are any cells that include the reserved character(s) +, -, /, *, and/or *, with the exception of the + operator also being used to concatenate strings.
+    - Strings can be concatenated using the + operator. This will be done with the + sign unless both the operands to the left and right of it are numerical (in which case it will be evaluated as a numerical formula) .
+    - In non-formula cells, you may type any number of expressions back to back (for instance, “REF(A1) REF(B1) SUM(A4..A7)” is a legal cell content).   
+
+- Add/Remove Cells:
+    - Single cells, as well as groups of cells, can be selected. This is visually indicated by a blue highlight over the cell(s). 
+        - In order to select multiple cells at once, click one cell, hold SHIFT, then click another cell. All cells in between will be selected.
+    - To add a column, click the Edit dropdown menu and select "Insert Column Left" or "Insert Column Right". A column will be inserted either to the left of the leftmost cell you have selected or to the right of the rightmost cell you have selected. 
+    - To add a row, click the Edit dropdown menu and select "Insert Row Above" or "Insert Row Below". A row will be inserted either above the highest cell you have selected or below the lowest cell you have selected.
+    - In order to delete row(s) or column(s), use the Delete Row(s) and Delete Column(s) buttons in the Edit dropdown menu. All rows or columns with a cell selected in them will be deleted.
+    - To clear cell(s), use the Clear Selected Cells or Clear All Cells buttons in the Edit dropdown menu.   
+
+- Find and Replace:
+    - The Find and Replace side menu is opened via the Data dropdown menu.
+        - Once the Find and Replace side menu is open, the cells will be locked and cannot be clicked into/edited until the side menu is closed.
+    - Type a word to find into the "find" box and a word to replace it with in the "replace with" box. 
+    - Then, one possible choice is the Replace All button, which will replace all instances of the find text with the replace text in cells no matter what
+    - The other choice is to go through instance of the find text one by one, selecting to replace or not on a case by case basis.
+        - To do this, you will see that the first instance of the find text is selected/highlighted. 
+        - To choose to replace this instance, press the Replace button. The select/highlight will automatically move on to the next instance of the find text after doing this.
+        - To choose NOT to replace this instance, press the Find Next button. The select/highlight will automatically move on to the next instance of the find text without replacing this one.
+    - Close the side menu with the X icon in its top right corner.  
+
+- Data Validation:
+    - The Data Validation side menu is opened via the Data dropdown menu.
+    - In this menu, you can select from different types of rules to apply to the currently selected cell:
+        - A "value is a word" rule allows the cell to contain any text
+        - A "value is a number" rule requires the cell to contain a number
+        - A "value is one of" rule allows you to specify any number of different values that the cell data must be equal to one of
+        - A "value is greater than/less than/equal to" rule does as the name implies and is only avalible after applying the "value is a number" rule. 
+    - For these rules, "required to be" means that if the cell's display value does not meet the rule, it will be replaced with an error message instead. For instance, if a "value is a number" rule is applied to cell A1, which contains "REF(B1)", and B1 contains "hello", A1 would display an error instead of "hello". A1's "true" value remains uneffected. 
+    - Rules can be applied to multiple cells at once by selecting multiple cells using SHIFT as described above
+    - Rules can be removed via the Delete Rule button that appears under the rule after applying it to a cell.
+        - Rules must be deleted from one cell at a time. They cannot be deleted in bulk.
+    - Close the side menu with the X icon in its top right corner.  
+
+- Text Styles:
+    - To style text, you can use the 4 buttons in the top right corner. In order from right to left, they are:
+        - A bold button
+        - An italics button
+        - An underline button
+        - A button that displays a color palette that allows you to choose text color from a GUI, or type a HEX value for color
+    - Styles are applied on a cell basis. All text in a cell will have the same style or lack thereof
+    - If bold, italics, or underline is selected for a cell that is already bolded/italicized/underlined, that quality is removed.
+    - Text styles are applied to all selected cells (you can use multi-select with SHIFT as described above). 
+        - In order to remove bolded/italicized/underline, ALL selected cells must have that quality. If only some do, the quality will be applied to the ones that do not have it when clicking the button.   
+    
+- To view an abridged version of this guide within the Spreadsheet application, click the Help button next to the Edit and Data dropdown menus.  
+
+GUIDE TO ERRORS AND THEIR MEANING: 
+- #INVALID-EXPR
+    - Malformed range expression (such as missing closing parenthesis, incorrect format of the cells being referred to between the parenthesis, etc). 
+- #INVALID-REF
+    - Malformed cell reference (such as missing closing parenthesis, incorrect format of the cell being referred to between the parenthesis, etc). 
+- #REF-OUT-OF-RANGE
+    - Cell ref or range expression refers to cell beyond the bounds of the current spreadsheet size.
+- #INVALID-FORMULA
+    - Malformed arithmetic formula (such as bad symbols, bad order of numbers and symbols, text within the formula, etc). 
+- #SELF-REF
+    - A cell ref or range expression references itself, or creates an infinate loop via a chain of references. 
+- #INVALID-INPUT
+    - A validation rule has been violated.
